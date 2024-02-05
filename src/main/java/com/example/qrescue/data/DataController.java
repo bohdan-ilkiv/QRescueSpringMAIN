@@ -1,4 +1,4 @@
-package com.example.qrescue.student;
+package com.example.qrescue.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -7,29 +7,29 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/student")
-public class StudentController {
+public class DataController {
 
-    private final StudentService studentService;
+    private final DataService dataService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    public DataController(DataService dataService) {
+        this.dataService = dataService;
     }
 
 
     @GetMapping
-    public List<Student> getStudents(){
-        return studentService.getStudents();
+    public List<Data> getStudents(){
+        return dataService.getStudents();
     }
 
     @PostMapping
-    public void registerNewStudent(@RequestBody Student student){
-        studentService.addNewStudent(student);
+    public void registerNewStudent(@RequestBody Data data){
+        dataService.addNewStudent(data);
     }
 
     @DeleteMapping(path = "{studentId}")
     public void deleteStudent(@PathVariable("studentId") Long studentId){
-        studentService.deleteStudent(studentId);
+        dataService.deleteStudent(studentId);
     }
 
     @PutMapping(path = "{studentId}")
@@ -37,6 +37,6 @@ public class StudentController {
             @PathVariable("studentId") Long studentId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email){
-        studentService.updateStudent(studentId, name, email);
+        dataService.updateStudent(studentId, name, email);
     }
 }

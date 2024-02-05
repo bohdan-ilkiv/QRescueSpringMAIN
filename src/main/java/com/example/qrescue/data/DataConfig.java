@@ -1,4 +1,4 @@
-package com.example.qrescue.student;
+package com.example.qrescue.data;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -9,18 +9,18 @@ import java.time.Month;
 import java.util.List;
 
 @Configuration
-public class StudentConfig {
+public class DataConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(StudentRepository repository){
+    CommandLineRunner commandLineRunner(DataRepository repository){
         return args -> {
-            Student bohdan = new Student(
+            Data bohdan = new Data(
                     "Bohdan",
                     "ilkivbo16@gmail.com",
                     LocalDate.of(2003, Month.MAY, 16)
             );
 
-            Student vlada = new Student(
+            Data vlada = new Data(
                     "Vlada",
                     "vlada@gmail.com",
                     LocalDate.of(2003, Month.JULY, 6)

@@ -1,7 +1,6 @@
-package com.example.qrescue.student;
+package com.example.qrescue.data;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -9,7 +8,7 @@ import java.time.Period;
 
 @Entity
 @Table
-public class Student {
+public class Data {
     @Id
     @SequenceGenerator(
             name = "student_sequence",
@@ -27,17 +26,17 @@ public class Student {
     @Transient
     private int age;
 
-    public Student() {
+    public Data() {
     }
 
-    public Student(Long id, String name, String email, LocalDate dob) {
+    public Data(Long id, String name, String email, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
     }
 
-    public Student(String name, String email, LocalDate dob) {
+    public Data(String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
