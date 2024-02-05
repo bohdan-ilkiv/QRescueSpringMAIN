@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/student")
+@RequestMapping(path = "api/v1/data")
 public class DataController {
 
     private final DataService dataService;
@@ -18,25 +18,25 @@ public class DataController {
 
 
     @GetMapping
-    public List<Data> getStudents(){
-        return dataService.getStudents();
+    public List<Data> getData(){
+        return dataService.getData();
     }
 
     @PostMapping
-    public void registerNewStudent(@RequestBody Data data){
-        dataService.addNewStudent(data);
+    public void registerNewData(@RequestBody Data data){
+        dataService.addNewData(data);
     }
 
-    @DeleteMapping(path = "{studentId}")
-    public void deleteStudent(@PathVariable("studentId") Long studentId){
-        dataService.deleteStudent(studentId);
+    @DeleteMapping(path = "{dataId}")
+    public void deleteStudent(@PathVariable("dataId") Long dataId){
+        dataService.deleteData(dataId);
     }
 
-    @PutMapping(path = "{studentId}")
-    public void updateStudent (
-            @PathVariable("studentId") Long studentId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email){
-        dataService.updateStudent(studentId, name, email);
+    @PutMapping(path = "{dataId}")
+    public void updateData (
+            @PathVariable("dataId") Long dataId,
+            @RequestParam(required = false) Long num_of_residents,
+            @RequestParam(required = false) Long fire_exits){
+        dataService.updateData(dataId, num_of_residents, fire_exits);
     }
 }

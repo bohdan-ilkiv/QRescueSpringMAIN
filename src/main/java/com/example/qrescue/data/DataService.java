@@ -18,40 +18,40 @@ public class DataService {
         this.dataRepository = dataRepository;
     }
 
-    public List<Data> getStudents(){
+    public List<Data> getData(){
         return dataRepository.findAll();
     }
 
-    public void addNewStudent(Data data) {
-        Optional<Data> studentOptional = dataRepository
-                .findStudentByEmail(data.getEmail());
-        if (studentOptional.isPresent()){
-            throw new IllegalStateException("Email is taken");
+    public void addNewData(Data data) {
+        Optional<Data> dataOptional = dataRepository
+                .findById(data.getId_building());
+        if (dataOptional.isPresent()){
+            throw new IllegalStateException("Data is the same");
         }
         dataRepository.save(data);
     }
 
-    public void deleteStudent(Long studentId) {
-        boolean exists = dataRepository.existsById(studentId);
+    public void deleteData(Long id_building) {
+        boolean exists = dataRepository.existsById(id_building);
         if(!exists){
-            throw new IllegalStateException("Student with id " + studentId + " doesn't exist");
+            throw new IllegalStateException("Building with id " + id_building + " doesn't exist");
         }
-        dataRepository.deleteById(studentId);
+        dataRepository.deleteById(id_building);
     }
 
     @Transactional
-    public void updateStudent(Long studentId, String name, String email){
-        Data data = dataRepository.findById(studentId)
-                .orElseThrow(() -> new IllegalStateException("Student with id " + studentId + " doesn't exist"));
-        if (name != null && !name.isEmpty() && !Objects.equals(data.getName(), name)){
-            data.setName(name);
+    public void updateData(Long dataId, Long num_of_residents, Long fire_exits){
+        Data data = dataRepository.findById(dataId)
+                .orElseThrow(() -> new IllegalStateException("Building with id " + dataId + " doesn't exist"));
+        if (num_of_residents != null && num_of_residents >= 0 &&  !Objects.equals(data.getNum_of_residents(), num_of_residents)){
+            data.setNum_of_residents(num_of_residents);
         }
-        if (email != null && !email.isEmpty() && !Objects.equals(data.getEmail(), email)){
-            Optional<Data> studentOptional = dataRepository.findStudentByEmail(email);
+        if (fire_exits != null && fire_exits >= 0 && !Objects.equals(data.getFire_exits(), fire_exits)){
+            Optional<Data> studentOptional = dataRepository.findDataById(fire_exits);
             if (studentOptional.isPresent()){
-                throw new IllegalStateException("Email is taken");
+                throw new IllegalStateException("Exits");
             }
-            data.setEmail(email);
+            data.setFire_exits(fire_exits);
         }
     }
 }

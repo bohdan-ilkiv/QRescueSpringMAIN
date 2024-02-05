@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface DataRepository
         extends JpaRepository<Data, Long> {
 
-    @Query("SELECT d FROM Data d WHERE d.email = ?1")
-    Optional<Data> findStudentByEmail(String email);
+    @Query("SELECT d FROM Data d WHERE d.id_building = ?1")
+    Optional<Data> findDataById(Long id_building);
 }

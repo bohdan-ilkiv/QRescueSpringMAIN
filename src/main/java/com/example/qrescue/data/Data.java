@@ -11,85 +11,58 @@ import java.time.Period;
 public class Data {
     @Id
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "data_sequence",
+            sequenceName = "data_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "data_sequence"
     )
-    private Long id;
-    private String name;
-    private String email;
-    private LocalDate dob;
-    @Transient
-    private int age;
+    private Long id_building;
+    private Long num_of_residents;
+    private Long fire_exits;
 
     public Data() {
     }
 
-    public Data(Long id, String name, String email, LocalDate dob) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
+    public Data(Long id_building, Long num_of_residents, Long fire_exits) {
+        this.id_building = id_building;
+        this.num_of_residents = num_of_residents;
+        this.fire_exits = fire_exits;
     }
 
-    public Data(String name, String email, LocalDate dob) {
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
+    public Long getId_building() {
+        return id_building;
     }
 
-    public Long getId() {
-        return id;
+    public void setId_building(Long id_building) {
+        this.id_building = id_building;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getNum_of_residents() {
+        return num_of_residents;
     }
 
-    public String getName() {
-        return name;
+    public void setNum_of_residents(Long num_of_residents) {
+        this.num_of_residents = num_of_residents;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Long getFire_exits() {
+        return fire_exits;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public int getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setFire_exits(Long fire_exits) {
+        this.fire_exits = fire_exits;
     }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", age=" + age +
+        return "Data{" +
+                "id_building=" + id_building +
+                ", num_of_residents='" + num_of_residents + '\'' +
+                ", fire_exits='" + fire_exits + '\'' +
                 '}';
     }
 }
+

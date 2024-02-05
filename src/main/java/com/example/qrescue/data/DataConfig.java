@@ -14,20 +14,20 @@ public class DataConfig {
     @Bean
     CommandLineRunner commandLineRunner(DataRepository repository){
         return args -> {
-            Data bohdan = new Data(
-                    "Bohdan",
-                    "ilkivbo16@gmail.com",
-                    LocalDate.of(2003, Month.MAY, 16)
+            Data kleparivska35 = new Data(
+                    1L,
+                    200L,
+                    2L
             );
 
-            Data vlada = new Data(
-                    "Vlada",
-                    "vlada@gmail.com",
-                    LocalDate.of(2003, Month.JULY, 6)
+            Data kleparivska22 = new Data(
+                    2L,
+                    222L,
+                    6L
             );
 
             repository.saveAll(
-                    List.of(bohdan, vlada)
+                    List.of(kleparivska35, kleparivska22)
             );
         };
     }
